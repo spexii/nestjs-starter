@@ -3,15 +3,14 @@ version: '3.8'
 services:
   app:
     build:
-      context: ../
+      context: ./
       dockerfile: docker/app/Dockerfile
     ports:
       - '3000:3000'
     depends_on:
       - db
   db:
-    build:
-      context: ./db
+    build: docker/db
     environment:
       - POSTGRES_USER=${POSTGRES_USER}
       - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}

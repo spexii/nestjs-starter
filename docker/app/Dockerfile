@@ -10,6 +10,7 @@ COPY --chown=node package.json .
 COPY --chown=node tsconfig.json .
 COPY --chown=node tsconfig.build.json .
 COPY --chown=node yarn.lock .
+COPY --chown=node .env .
 
 RUN yarn install --frozen-lockfile
 RUN yarn build

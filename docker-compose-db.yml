@@ -1,14 +1,6 @@
 version: '3.8'
 
 services:
-  app:
-    build:
-      context: ./
-      dockerfile: docker/app/Dockerfile
-    ports:
-      - '3000:3000'
-    depends_on:
-      - db
   db:
     build: docker/db
     environment:
@@ -16,6 +8,6 @@ services:
       - POSTGRES_PASSWORD=${DATABASE_PASSWORD}
       - POSTGRES_DB=${DATABASE_NAME}
       - PGPORT=${DATABASE_PORT}
-    expose:
-      - ${DATABASE_PORT}
+    ports:
+      - '${DATABASE_PORT}:${DATABASE_PORT}'
     command: -p ${DATABASE_PORT}
